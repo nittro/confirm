@@ -1,4 +1,4 @@
-_context.invoke('Nittro.Widgets', function (Dialog, Arrays, ReflectionClass) {
+_context.invoke('Nittro.Extras.Confirm', function (Dialog, Arrays, ReflectionClass) {
 
 	var Confirm = _context.extend(Dialog, function (options) {
 		if (!(this instanceof Confirm)) {
@@ -84,6 +84,7 @@ _context.invoke('Nittro.Widgets', function (Dialog, Arrays, ReflectionClass) {
     _context.register(Confirm, 'Confirm');
 
 }, {
+    Dialog: 'Nittro.Extras.Dialogs.Dialog',
 	ReflectionClass: 'Utils.ReflectionClass',
     Arrays: 'Utils.Arrays'
 });

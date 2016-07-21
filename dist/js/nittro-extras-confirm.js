@@ -1,4 +1,4 @@
-_context.invoke('Nittro.Widgets', function (Dialog, Arrays, ReflectionClass) {
+_context.invoke('Nittro.Extras.Confirm', function (Dialog, Arrays, ReflectionClass) {
 
 	var Confirm = _context.extend(Dialog, function (options) {
 		if (!(this instanceof Confirm)) {
@@ -84,11 +84,12 @@ _context.invoke('Nittro.Widgets', function (Dialog, Arrays, ReflectionClass) {
     _context.register(Confirm, 'Confirm');
 
 }, {
+    Dialog: 'Nittro.Extras.Dialogs.Dialog',
 	ReflectionClass: 'Utils.ReflectionClass',
     Arrays: 'Utils.Arrays'
 });
 ;
-_context.invoke('Nittro.Services', function (DOM, Arrays, Confirm) {
+_context.invoke('Nittro.Extras.Confirm', function (DOM, Arrays, Confirm) {
 
     var AutoConfirm = _context.extend(function(page, options) {
         this._ = {
@@ -144,6 +145,28 @@ _context.invoke('Nittro.Services', function (DOM, Arrays, Confirm) {
 
 }, {
     DOM: 'Utils.DOM',
-    Arrays: 'Utils.Arrays',
-    Confirm: 'Nittro.Widgets.Confirm'
+    Arrays: 'Utils.Arrays'
+});
+;
+_context.invoke('Nittro.Extras.Confirm.Bridges', function() {
+
+    var ConfirmDI = _context.extend('Nittro.DI.BuilderExtension', function(containerBuilder, config) {
+        ConfirmDI.Super.call(containerBuilder, config);
+    }, {
+        load: function() {
+            var builder = this._getContainerBuilder();
+
+            builder.addServiceDefinition('autoConfirm', {
+                factory: 'Nittro.Extras.Confirm.AutoConfirm()',
+                args: {
+                    options: this._getConfig()
+                },
+                run: true
+            });
+
+        }
+    });
+
+    _context.register(ConfirmDI, 'ConfirmDI')
+
 });

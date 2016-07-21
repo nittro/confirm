@@ -1,4 +1,4 @@
-_context.invoke('Nittro.Services', function (DOM, Arrays, Confirm) {
+_context.invoke('Nittro.Extras.Confirm', function (DOM, Arrays, Confirm) {
 
     var AutoConfirm = _context.extend(function(page, options) {
         this._ = {
@@ -54,6 +54,5 @@ _context.invoke('Nittro.Services', function (DOM, Arrays, Confirm) {
 
 }, {
     DOM: 'Utils.DOM',
-    Arrays: 'Utils.Arrays',
-    Confirm: 'Nittro.Widgets.Confirm'
+    Arrays: 'Utils.Arrays'
 });
