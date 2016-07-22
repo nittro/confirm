@@ -148,10 +148,14 @@ _context.invoke('Nittro.Extras.Confirm', function (DOM, Arrays, Confirm) {
     Arrays: 'Utils.Arrays'
 });
 ;
-_context.invoke('Nittro.Extras.Confirm.Bridges', function() {
+_context.invoke('Nittro.Extras.Confirm.Bridges', function(Nittro) {
+
+    if (!Nittro.DI) {
+        return;
+    }
 
     var ConfirmDI = _context.extend('Nittro.DI.BuilderExtension', function(containerBuilder, config) {
-        ConfirmDI.Super.call(containerBuilder, config);
+        ConfirmDI.Super.call(this, containerBuilder, config);
     }, {
         load: function() {
             var builder = this._getContainerBuilder();

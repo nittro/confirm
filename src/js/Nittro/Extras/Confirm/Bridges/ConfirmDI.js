@@ -5,7 +5,7 @@ _context.invoke('Nittro.Extras.Confirm.Bridges', function(Nittro) {
     }
 
     var ConfirmDI = _context.extend('Nittro.DI.BuilderExtension', function(containerBuilder, config) {
-        ConfirmDI.Super.call(containerBuilder, config);
+        ConfirmDI.Super.call(this, containerBuilder, config);
     }, {
         load: function() {
             var builder = this._getContainerBuilder();
