@@ -1,0 +1,14 @@
+{
+    "files": {
+        "js": [
+            "src/js/Nittro/Extras/Confirm/Confirm.js",
+            "src/js/Nittro/Extras/Confirm/AutoConfirm.js",
+            "src/js/Nittro/Extras/Confirm/Bridges/ConfirmDI.js"
+        ]
+    },
+    "compat": {
+        "es5": true,
+        "flex": true,
+        "transitions": true
+    }
+}

@@ -1,10 +1,6 @@
 module.exports = function(grunt) {
 
-    var files = [
-        'src/js/Nittro/Extras/Confirm/Confirm.js',
-        'src/js/Nittro/Extras/Confirm/AutoConfirm.js',
-        'src/js/Nittro/Extras/Confirm/Bridges/ConfirmDI.js'
-    ];
+    var files = grunt.file.readJSON('nittro.json').files;
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -16,7 +12,7 @@ module.exports = function(grunt) {
             },
             confirm: {
                 files: {
-                    'dist/js/nittro-extras-confirm.min.js': files
+                    'dist/js/nittro-extras-confirm.min.js': files.js
                 }
             }
         },
@@ -27,7 +23,7 @@ module.exports = function(grunt) {
             },
             confirm: {
                 files: {
-                    'dist/js/nittro-extras-confirm.js': files
+                    'dist/js/nittro-extras-confirm.js': files.js
                 }
             }
         }
