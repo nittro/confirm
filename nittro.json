@@ -6,6 +6,7 @@
             "src/js/Nittro/Extras/Confirm/Bridges/ConfirmDI.js"
         ]
     },
+    "di": "Nittro.Extras.Confirm.Bridges.ConfirmDI()",
     "compat": {
         "es5": true,
         "flex": true,
