@@ -1,12 +1,24 @@
 {
     "files": {
         "js": [
-            "src/js/Nittro/Extras/Confirm/Confirm.js",
-            "src/js/Nittro/Extras/Confirm/AutoConfirm.js",
-            "src/js/Nittro/Extras/Confirm/Bridges/ConfirmDI.js"
+            "src/js/Nittro/Extras/Confirm/Confirm.js"
         ]
     },
-    "di": "Nittro.Extras.Confirm.Bridges.ConfirmDI()",
+    "bridges": {
+        "nittro-di": {
+            "files": [
+                "src/js/Nittro/Extras/Confirm/Bridges/ConfirmDI/ConfirmExtension.js"
+            ],
+            "extensions": {
+                "confirm": "Nittro.Extras.Confirm.Bridges.ConfirmDI.ConfirmExtension()"
+            }
+        },
+        "nittro-page": {
+            "files": [
+                "src/js/Nittro/Extras/Confirm/Bridges/ConfirmPage/AutoConfirm.js"
+            ]
+        }
+    },
     "compat": {
         "es5": true,
         "flex": true,
