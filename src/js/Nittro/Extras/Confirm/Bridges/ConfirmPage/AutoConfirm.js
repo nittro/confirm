@@ -15,7 +15,7 @@ _context.invoke('Nittro.Extras.Confirm.Bridges.ConfirmPage', function (DOM, Arra
         },
 
         handleTransaction: function (evt) {
-            var elem = evt.data.context ? evt.data.context.element || null : null;
+            var elem = evt.data.context.element || null;
 
             if (!elem || !DOM.hasClass(elem, 'nittro-confirm')) {
                 return;
@@ -27,6 +27,7 @@ _context.invoke('Nittro.Extras.Confirm.Bridges.ConfirmPage', function (DOM, Arra
             }
 
             evt.preventDefault();
+            evt.data.context.event && evt.data.context.event.preventDefault();
 
             var prompt = DOM.getData(elem, 'prompt') || this._.options.prompt,
                 confirm = DOM.getData(elem, 'confirm') || this._.options.confirm,
