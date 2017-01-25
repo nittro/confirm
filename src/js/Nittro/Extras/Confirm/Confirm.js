@@ -10,17 +10,10 @@ _context.invoke('Nittro.Extras.Confirm', function (Dialog, Arrays, ReflectionCla
 
 		Confirm.Super.call(this, this._prepareOptions(arguments));
 
-		this._.promise = new Promise(function (fulfill, reject) {
+		this._.promise = new Promise(function (fulfill) {
             this.on('button', function(evt) {
                 this.destroy();
-
-                if (evt.data.value === 'confirm') {
-                    fulfill();
-
-                } else {
-                    reject();
-
-                }
+                fulfill(evt.data.value === 'confirm');
             });
         }.bind(this));
 

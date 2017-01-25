@@ -38,20 +38,22 @@ _context.invoke('Nittro.Extras.Confirm.Bridges.ConfirmPage', function (DOM, Arra
             var confirm = DOM.getData(elem, 'confirm') || this._.options.confirm,
                 cancel = DOM.getData(elem, 'cancel') || this._.options.cancel;
 
-            this._.dialogManager.createConfirm(prompt, confirm, cancel).then(function() {
-                DOM.setData(elem, 'confirmed', true);
+            this._.dialogManager.createConfirm(prompt, confirm, cancel)
+                .then(function(result) {
+                    if (result) {
+                        DOM.setData(elem, 'confirmed', true);
 
-                if (elem instanceof HTMLFormElement) {
-                    this._.page.sendForm(elem);
+                        if (elem instanceof HTMLFormElement) {
+                            this._.page.sendForm(elem);
 
-                } else {
-                    this._.page.openLink(elem);
+                        } else {
+                            this._.page.openLink(elem);
 
-                }
-            }.bind(this), function() {
-                DOM.setData(elem, 'confirmed', null);
-
-            });
+                        }
+                    } else {
+                        DOM.setData(elem, 'confirmed', null);
+                    }
+                }.bind(this));
         }
     });
 
