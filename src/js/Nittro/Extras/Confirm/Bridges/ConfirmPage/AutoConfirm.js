@@ -1,8 +1,9 @@
-_context.invoke('Nittro.Extras.Confirm.Bridges.ConfirmPage', function (DOM, Arrays, Confirm) {
+_context.invoke('Nittro.Extras.Confirm.Bridges.ConfirmPage', function (DOM, Arrays) {
 
-    var AutoConfirm = _context.extend(function(page, options) {
+    var AutoConfirm = _context.extend(function(page, dialogManager, options) {
         this._ = {
             page: page,
+            dialogManager: dialogManager,
             options: Arrays.mergeTree(true, {}, AutoConfirm.defaults, options)
         };
     }, {
@@ -37,7 +38,7 @@ _context.invoke('Nittro.Extras.Confirm.Bridges.ConfirmPage', function (DOM, Arra
             var confirm = DOM.getData(elem, 'confirm') || this._.options.confirm,
                 cancel = DOM.getData(elem, 'cancel') || this._.options.cancel;
 
-            Confirm(prompt, confirm, cancel).then(function() {
+            this._.dialogManager.createConfirm(prompt, confirm, cancel).then(function() {
                 DOM.setData(elem, 'confirmed', true);
 
                 if (elem instanceof HTMLFormElement) {
@@ -58,6 +59,5 @@ _context.invoke('Nittro.Extras.Confirm.Bridges.ConfirmPage', function (DOM, Arra
 
 }, {
     DOM: 'Utils.DOM',
-    Arrays: 'Utils.Arrays',
-    Confirm: 'Nittro.Extras.Confirm.Confirm'
+    Arrays: 'Utils.Arrays'
 });

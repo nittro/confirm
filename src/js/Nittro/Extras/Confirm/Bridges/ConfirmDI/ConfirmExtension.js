@@ -6,6 +6,10 @@ _context.invoke('Nittro.Extras.Confirm.Bridges.ConfirmDI', function() {
         setup: function() {
             var builder = this._getContainerBuilder();
 
+            if (builder.hasServiceDefinition('dialogManager')) {
+                builder.addFactory('confirm', '@dialogManager::createConfirm()');
+            }
+
             if (builder.hasServiceDefinition('page')) {
                 builder.addServiceDefinition('autoConfirm', {
                     factory: 'Nittro.Extras.Confirm.Bridges.ConfirmPage.AutoConfirm()',
