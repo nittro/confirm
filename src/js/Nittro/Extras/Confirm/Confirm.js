@@ -33,8 +33,8 @@ _context.invoke('Nittro.Extras.Confirm', function (Dialog, Arrays, ReflectionCla
                     cancel: {label: 'Cancel', type: 'text'}
                 },
                 keyMap: {
-                    confirm: 13,
-                    cancel: 27
+                    'Enter': 'confirm',
+                    'Escape': 'cancel'
                 }
             },
             setDefaults: function(defaults) {

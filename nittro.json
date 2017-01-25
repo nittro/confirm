@@ -1,7 +1,8 @@
 {
     "files": {
         "js": [
-            "src/js/Nittro/Extras/Confirm/Confirm.js"
+            "src/js/Nittro/Extras/Confirm/Confirm.js",
+            "src/js/Nittro/Extras/Confirm/ConfirmMixin.js"
         ]
     },
     "bridges": {
