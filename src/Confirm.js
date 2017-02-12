@@ -13,7 +13,7 @@ _context.invoke('Nittro.Extras.Confirm', function (Dialog, Arrays, ReflectionCla
 		this._.promise = new Promise(function (fulfill) {
             this.on('button', function(evt) {
                 this.destroy();
-                fulfill(evt.data.value === 'confirm');
+                fulfill(evt.data.action === 'confirm');
             });
         }.bind(this));
 
