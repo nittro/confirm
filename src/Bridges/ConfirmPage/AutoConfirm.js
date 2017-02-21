@@ -1,8 +1,7 @@
 _context.invoke('Nittro.Extras.Confirm.Bridges.ConfirmPage', function (DOM, Arrays) {
 
-    var AutoConfirm = _context.extend(function(page, dialogManager, options) {
+    var AutoConfirm = _context.extend(function(dialogManager, options) {
         this._ = {
-            page: page,
             dialogManager: dialogManager,
             options: Arrays.mergeTree(true, {}, AutoConfirm.defaults, options)
         };
@@ -21,15 +20,7 @@ _context.invoke('Nittro.Extras.Confirm.Bridges.ConfirmPage', function (DOM, Arra
 
             if (!prompt) {
                 return;
-
-            } else if (DOM.getData(elem, 'confirmed')) {
-                DOM.setData(elem, 'confirmed', null);
-                return;
-
             }
-
-            evt.preventDefault();
-            evt.data.context.event && evt.data.context.event.preventDefault();
 
             if (typeof prompt !== 'string') {
                 prompt = this._.options.prompt;
@@ -38,22 +29,10 @@ _context.invoke('Nittro.Extras.Confirm.Bridges.ConfirmPage', function (DOM, Arra
             var confirm = DOM.getData(elem, 'confirm') || this._.options.confirm,
                 cancel = DOM.getData(elem, 'cancel') || this._.options.cancel;
 
-            this._.dialogManager.createConfirm(prompt, confirm, cancel)
-                .then(function(result) {
-                    if (result) {
-                        DOM.setData(elem, 'confirmed', true);
-
-                        if (elem instanceof HTMLFormElement) {
-                            this._.page.sendForm(elem);
-
-                        } else {
-                            this._.page.openLink(elem);
-
-                        }
-                    } else {
-                        DOM.setData(elem, 'confirmed', null);
-                    }
-                }.bind(this));
+            evt.waitFor(
+                this._.dialogManager.createConfirm(prompt, confirm, cancel)
+                    .then(function(result) { result || evt.preventDefault(); })
+            );
         }
     });
 
