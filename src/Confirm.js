@@ -1,14 +1,15 @@
 _context.invoke('Nittro.Extras.Confirm', function (Dialog, Arrays, ReflectionClass) {
 
+    var id = 0;
+
 	var Confirm = _context.extend(Dialog, function (options) {
 		if (!(this instanceof Confirm)) {
 			var dlg = ReflectionClass.from(Confirm).newInstanceArgs(arguments);
 			window.setTimeout(function() { dlg.show(); }, 1);
 			return dlg;
-
 		}
 
-		Confirm.Super.call(this, this._prepareOptions(arguments));
+		Confirm.Super.call(this, 'nittro-confirm-' + (++id), this._prepareOptions(arguments));
 
 		this._.promise = new Promise(function (fulfill) {
             this.on('button', function(evt) {
@@ -32,7 +33,6 @@ _context.invoke('Nittro.Extras.Confirm', function (Dialog, Arrays, ReflectionCla
             },
             setDefaults: function(defaults) {
                 Arrays.mergeTree(Confirm.defaults, defaults);
-
             }
         },
 
@@ -52,25 +52,20 @@ _context.invoke('Nittro.Extras.Confirm', function (Dialog, Arrays, ReflectionCla
 					if (args.length > 2) {
 						if (typeof args[2] === 'string') {
 							options.buttons.cancel = {label: args[2], type: 'text'};
-
 						} else {
 							options.buttons.cancel = args[2];
-
 						}
 					} else {
 						options.buttons.cancel = {label: 'Cancel', type: 'text'};
-
 					}
 				}
 			}
 
 			return options;
-
 		},
 
 		then: function (onfulfill, onreject) {
             return this._.promise.then(onfulfill, onreject);
-
         }
 	});
 
